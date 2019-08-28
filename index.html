@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://guoruining.github.io/2019/08/28/第一篇技术文章/">
+    <link itemprop="mainEntityOfPage" href="https://guoruining.github.io/2019/08/28/linux系统常用指令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozi">
@@ -271,7 +271,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/28/第一篇技术文章/" itemprop="url">第一篇技术文章</a></h1>
+                <a class="post-title-link" href="/2019/08/28/linux系统常用指令/" itemprop="url">linux系统常用指令</a></h1>
         
 
         <div class="post-meta">
@@ -345,7 +345,45 @@
       
         
           
-            
+            <h1 id="vi指令"><a href="#vi指令" class="headerlink" title="vi指令"></a>vi指令</h1><ul>
+<li>显示行号<blockquote>
+<p>:set number或 :set nu</p>
+</blockquote>
+</li>
+<li>向上查找<blockquote>
+<p>?context 下一个：n，反向：N</p>
+</blockquote>
+</li>
+<li>向下查找<blockquote>
+<p>/context 下一个：n，反向：N</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="netstat指令"><a href="#netstat指令" class="headerlink" title="netstat指令"></a>netstat指令</h1><ul>
+<li>查看端口占用<blockquote>
+<p>netstat -anp | grep 8080</p>
+</blockquote>
+</li>
+<li>连续查看端口占用<blockquote>
+<p>netstat -anp -c | grep 8080</p>
+</blockquote>
+</li>
+<li>统计端口连接数<blockquote>
+<p>netstat -anp | grep 8080 | wc -l</p>
+</blockquote>
+</li>
+<li>windows下查看端口占用<blockquote>
+<p>netstat -aon | findstr 8080<br>tasklist | findstr pid</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="ps指令"><a href="#ps指令" class="headerlink" title="ps指令"></a>ps指令</h1><ul>
+<li>查看进程<blockquote>
+<p>ps -ef | grep java</p>
+</blockquote>
+</li>
+</ul>
+
           
         
       
