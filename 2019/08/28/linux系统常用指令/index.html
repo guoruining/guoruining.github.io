@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="vi指令显示行号 :set number或 :set nu  向上查找 ?context 下一个：n，反向：N  向下查找 /context 下一个：n，反向：N  netstat指令查看端口占用 netstat -anp | grep 8080  连续查看端口占用 netstat -anp -c | grep 8080  统计端口连接数 netstat -anp | grep 8080 | wc">
+<meta name="description" content="vi指令 显示行号 :set number或 :set nu   向上查找 ?context 下一个：n，反向：N   向下查找 /context 下一个：n，反向：N    netstat指令 查看端口占用 netstat -anp | grep 8080   连续查看端口占用 netstat -anp -c | grep 8080   统计端口连接数 netstat -anp | grep 8">
 <meta name="keywords" content="linux,命令">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux系统常用指令">
 <meta property="og:url" content="https://guoruining.github.io/2019/08/28/linux系统常用指令/index.html">
 <meta property="og:site_name" content="夜空中最靓的仔">
-<meta property="og:description" content="vi指令显示行号 :set number或 :set nu  向上查找 ?context 下一个：n，反向：N  向下查找 /context 下一个：n，反向：N  netstat指令查看端口占用 netstat -anp | grep 8080  连续查看端口占用 netstat -anp -c | grep 8080  统计端口连接数 netstat -anp | grep 8080 | wc">
+<meta property="og:description" content="vi指令 显示行号 :set number或 :set nu   向上查找 ?context 下一个：n，反向：N   向下查找 /context 下一个：n，反向：N    netstat指令 查看端口占用 netstat -anp | grep 8080   连续查看端口占用 netstat -anp -c | grep 8080   统计端口连接数 netstat -anp | grep 8">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T08:50:48.000Z">
+<meta property="og:updated_time" content="2019-08-28T08:55:13.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux系统常用指令">
-<meta name="twitter:description" content="vi指令显示行号 :set number或 :set nu  向上查找 ?context 下一个：n，反向：N  向下查找 /context 下一个：n，反向：N  netstat指令查看端口占用 netstat -anp | grep 8080  连续查看端口占用 netstat -anp -c | grep 8080  统计端口连接数 netstat -anp | grep 8080 | wc">
+<meta name="twitter:description" content="vi指令 显示行号 :set number或 :set nu   向上查找 ?context 下一个：n，反向：N   向下查找 /context 下一个：n，反向：N    netstat指令 查看端口占用 netstat -anp | grep 8080   连续查看端口占用 netstat -anp -c | grep 8080   统计端口连接数 netstat -anp | grep 8">
 
 
 
@@ -342,30 +342,44 @@
       
 
       
-        <h1 id="vi指令"><a href="#vi指令" class="headerlink" title="vi指令"></a>vi指令</h1><h2 id="显示行号"><a href="#显示行号" class="headerlink" title="显示行号"></a>显示行号</h2><blockquote>
+        <h1 id="vi指令"><a href="#vi指令" class="headerlink" title="vi指令"></a>vi指令</h1><ul>
+<li>显示行号<blockquote>
 <p>:set number或 :set nu</p>
 </blockquote>
-<h2 id="向上查找"><a href="#向上查找" class="headerlink" title="向上查找"></a>向上查找</h2><blockquote>
+</li>
+<li>向上查找<blockquote>
 <p>?context 下一个：n，反向：N</p>
 </blockquote>
-<h2 id="向下查找"><a href="#向下查找" class="headerlink" title="向下查找"></a>向下查找</h2><blockquote>
+</li>
+<li>向下查找<blockquote>
 <p>/context 下一个：n，反向：N</p>
 </blockquote>
-<h1 id="netstat指令"><a href="#netstat指令" class="headerlink" title="netstat指令"></a>netstat指令</h1><h2 id="查看端口占用"><a href="#查看端口占用" class="headerlink" title="查看端口占用"></a>查看端口占用</h2><blockquote>
+</li>
+</ul>
+<h1 id="netstat指令"><a href="#netstat指令" class="headerlink" title="netstat指令"></a>netstat指令</h1><ul>
+<li>查看端口占用<blockquote>
 <p>netstat -anp | grep 8080</p>
 </blockquote>
-<h2 id="连续查看端口占用"><a href="#连续查看端口占用" class="headerlink" title="连续查看端口占用"></a>连续查看端口占用</h2><blockquote>
+</li>
+<li>连续查看端口占用<blockquote>
 <p>netstat -anp -c | grep 8080</p>
 </blockquote>
-<h2 id="统计端口连接数"><a href="#统计端口连接数" class="headerlink" title="统计端口连接数"></a>统计端口连接数</h2><blockquote>
+</li>
+<li>统计端口连接数<blockquote>
 <p>netstat -anp | grep 8080 | wc -l</p>
 </blockquote>
-<h2 id="windows下查看端口占用"><a href="#windows下查看端口占用" class="headerlink" title="windows下查看端口占用"></a>windows下查看端口占用</h2><blockquote>
+</li>
+<li>windows下查看端口占用<blockquote>
 <p>netstat -aon | findstr 8080<br>tasklist | findstr pid</p>
 </blockquote>
-<h1 id="ps指令"><a href="#ps指令" class="headerlink" title="ps指令"></a>ps指令</h1><h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><blockquote>
+</li>
+</ul>
+<h1 id="ps指令"><a href="#ps指令" class="headerlink" title="ps指令"></a>ps指令</h1><ul>
+<li>查看进程<blockquote>
 <p>ps -ef | grep java</p>
 </blockquote>
+</li>
+</ul>
 
       
     </div>
@@ -540,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vi指令"><span class="nav-number">1.</span> <span class="nav-text">vi指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示行号"><span class="nav-number">1.1.</span> <span class="nav-text">显示行号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向上查找"><span class="nav-number">1.2.</span> <span class="nav-text">向上查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向下查找"><span class="nav-number">1.3.</span> <span class="nav-text">向下查找</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#netstat指令"><span class="nav-number">2.</span> <span class="nav-text">netstat指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看端口占用"><span class="nav-number">2.1.</span> <span class="nav-text">查看端口占用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连续查看端口占用"><span class="nav-number">2.2.</span> <span class="nav-text">连续查看端口占用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统计端口连接数"><span class="nav-number">2.3.</span> <span class="nav-text">统计端口连接数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows下查看端口占用"><span class="nav-number">2.4.</span> <span class="nav-text">windows下查看端口占用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ps指令"><span class="nav-number">3.</span> <span class="nav-text">ps指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看进程"><span class="nav-number">3.1.</span> <span class="nav-text">查看进程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vi指令"><span class="nav-number">1.</span> <span class="nav-text">vi指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#netstat指令"><span class="nav-number">2.</span> <span class="nav-text">netstat指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ps指令"><span class="nav-number">3.</span> <span class="nav-text">ps指令</span></a></li></ol></div>
             
 
           </div>

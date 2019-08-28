@@ -345,30 +345,44 @@
       
         
           
-            <h1 id="vi指令"><a href="#vi指令" class="headerlink" title="vi指令"></a>vi指令</h1><h2 id="显示行号"><a href="#显示行号" class="headerlink" title="显示行号"></a>显示行号</h2><blockquote>
+            <h1 id="vi指令"><a href="#vi指令" class="headerlink" title="vi指令"></a>vi指令</h1><ul>
+<li>显示行号<blockquote>
 <p>:set number或 :set nu</p>
 </blockquote>
-<h2 id="向上查找"><a href="#向上查找" class="headerlink" title="向上查找"></a>向上查找</h2><blockquote>
+</li>
+<li>向上查找<blockquote>
 <p>?context 下一个：n，反向：N</p>
 </blockquote>
-<h2 id="向下查找"><a href="#向下查找" class="headerlink" title="向下查找"></a>向下查找</h2><blockquote>
+</li>
+<li>向下查找<blockquote>
 <p>/context 下一个：n，反向：N</p>
 </blockquote>
-<h1 id="netstat指令"><a href="#netstat指令" class="headerlink" title="netstat指令"></a>netstat指令</h1><h2 id="查看端口占用"><a href="#查看端口占用" class="headerlink" title="查看端口占用"></a>查看端口占用</h2><blockquote>
+</li>
+</ul>
+<h1 id="netstat指令"><a href="#netstat指令" class="headerlink" title="netstat指令"></a>netstat指令</h1><ul>
+<li>查看端口占用<blockquote>
 <p>netstat -anp | grep 8080</p>
 </blockquote>
-<h2 id="连续查看端口占用"><a href="#连续查看端口占用" class="headerlink" title="连续查看端口占用"></a>连续查看端口占用</h2><blockquote>
+</li>
+<li>连续查看端口占用<blockquote>
 <p>netstat -anp -c | grep 8080</p>
 </blockquote>
-<h2 id="统计端口连接数"><a href="#统计端口连接数" class="headerlink" title="统计端口连接数"></a>统计端口连接数</h2><blockquote>
+</li>
+<li>统计端口连接数<blockquote>
 <p>netstat -anp | grep 8080 | wc -l</p>
 </blockquote>
-<h2 id="windows下查看端口占用"><a href="#windows下查看端口占用" class="headerlink" title="windows下查看端口占用"></a>windows下查看端口占用</h2><blockquote>
+</li>
+<li>windows下查看端口占用<blockquote>
 <p>netstat -aon | findstr 8080<br>tasklist | findstr pid</p>
 </blockquote>
-<h1 id="ps指令"><a href="#ps指令" class="headerlink" title="ps指令"></a>ps指令</h1><h2 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h2><blockquote>
+</li>
+</ul>
+<h1 id="ps指令"><a href="#ps指令" class="headerlink" title="ps指令"></a>ps指令</h1><ul>
+<li>查看进程<blockquote>
 <p>ps -ef | grep java</p>
 </blockquote>
+</li>
+</ul>
 
           
         
