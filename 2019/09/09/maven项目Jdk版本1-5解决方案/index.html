@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="maven,jdk1.5,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="4个核心 自动配置 起步依赖 命令行界面 Actuator  springbootcli安装 下载springbootcli zip安装包 解压后将bin目录添加到Path环境变量 命令行运行命令查看版本 spring –version   spring shell进入spring命令行  springbootcli创建项目 执行命令： spring init -dweb,jpa,security">
+<meta name="description" content="maven项目jdk版本1.5修改方法全局方法-修改settings.xml 打开settings.xml文件，找到节点，添加如下配置：  123456789101112&amp;lt;profile&amp;gt;        &amp;lt;id&amp;gt;jdk-1.8&amp;lt;/id&amp;gt;        &amp;lt;activation&amp;gt;            &amp;lt;activeByDefault&amp;gt;tru">
+<meta name="keywords" content="maven,jdk1.5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot实战笔记">
-<meta property="og:url" content="https://guoruining.github.io/2019/08/29/SpringBoot实战笔记/index.html">
+<meta property="og:title" content="maven项目Jdk版本1.5解决方案">
+<meta property="og:url" content="https://guoruining.github.io/2019/09/09/maven项目Jdk版本1-5解决方案/index.html">
 <meta property="og:site_name" content="夜空中最靓的仔">
-<meta property="og:description" content="4个核心 自动配置 起步依赖 命令行界面 Actuator  springbootcli安装 下载springbootcli zip安装包 解压后将bin目录添加到Path环境变量 命令行运行命令查看版本 spring –version   spring shell进入spring命令行  springbootcli创建项目 执行命令： spring init -dweb,jpa,security">
+<meta property="og:description" content="maven项目jdk版本1.5修改方法全局方法-修改settings.xml 打开settings.xml文件，找到节点，添加如下配置：  123456789101112&amp;lt;profile&amp;gt;        &amp;lt;id&amp;gt;jdk-1.8&amp;lt;/id&amp;gt;        &amp;lt;activation&amp;gt;            &amp;lt;activeByDefault&amp;gt;tru">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-03T07:40:29.938Z">
+<meta property="og:updated_time" content="2019-09-09T01:08:19.077Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringBoot实战笔记">
-<meta name="twitter:description" content="4个核心 自动配置 起步依赖 命令行界面 Actuator  springbootcli安装 下载springbootcli zip安装包 解压后将bin目录添加到Path环境变量 命令行运行命令查看版本 spring –version   spring shell进入spring命令行  springbootcli创建项目 执行命令： spring init -dweb,jpa,security">
+<meta name="twitter:title" content="maven项目Jdk版本1.5解决方案">
+<meta name="twitter:description" content="maven项目jdk版本1.5修改方法全局方法-修改settings.xml 打开settings.xml文件，找到节点，添加如下配置：  123456789101112&amp;lt;profile&amp;gt;        &amp;lt;id&amp;gt;jdk-1.8&amp;lt;/id&amp;gt;        &amp;lt;activation&amp;gt;            &amp;lt;activeByDefault&amp;gt;tru">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://guoruining.github.io/2019/08/29/SpringBoot实战笔记/">
+  <link rel="canonical" href="https://guoruining.github.io/2019/09/09/maven项目Jdk版本1-5解决方案/">
 
 
 
 
 
-  <title>SpringBoot实战笔记 | 夜空中最靓的仔</title>
+  <title>maven项目Jdk版本1.5解决方案 | 夜空中最靓的仔</title>
   
 
 
@@ -252,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://guoruining.github.io/2019/08/29/SpringBoot实战笔记/">
+    <link itemprop="mainEntityOfPage" href="https://guoruining.github.io/2019/09/09/maven项目Jdk版本1-5解决方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guozi">
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringBoot实战笔记</h1>
+          <h1 class="post-title" itemprop="name headline">maven项目Jdk版本1.5解决方案</h1>
         
 
         <div class="post-meta">
@@ -281,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-29T15:09:30+08:00">
-                2019-08-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-09T08:57:40+08:00">
+                2019-09-09
               </time>
             
 
@@ -304,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot</span>
+                  <a href="/categories/javaweb/" itemprop="url" rel="index">
+                    <span itemprop="name">javaweb</span>
                   </a>
                 </span>
 
@@ -341,54 +342,19 @@
       
 
       
-        <h1 id="4个核心"><a href="#4个核心" class="headerlink" title="4个核心"></a>4个核心</h1><ul>
-<li>自动配置</li>
-<li>起步依赖</li>
-<li>命令行界面</li>
-<li>Actuator</li>
+        <h1 id="maven项目jdk版本1-5修改方法"><a href="#maven项目jdk版本1-5修改方法" class="headerlink" title="maven项目jdk版本1.5修改方法"></a>maven项目jdk版本1.5修改方法</h1><h2 id="全局方法-修改settings-xml"><a href="#全局方法-修改settings-xml" class="headerlink" title="全局方法-修改settings.xml"></a>全局方法-修改settings.xml</h2><ul>
+<li>打开settings.xml文件，找到<profiles>节点，添加如下配置：</profiles></li>
 </ul>
-<h1 id="springbootcli安装"><a href="#springbootcli安装" class="headerlink" title="springbootcli安装"></a>springbootcli安装</h1><ul>
-<li>下载springbootcli zip安装包</li>
-<li>解压后将bin目录添加到Path环境变量</li>
-<li>命令行运行命令查看版本<blockquote>
-<p>spring –version</p>
-</blockquote>
-</li>
-<li>spring shell进入spring命令行</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;profile&gt;    </span><br><span class="line">    &lt;id&gt;jdk-1.8&lt;/id&gt;    </span><br><span class="line">    &lt;activation&gt;    </span><br><span class="line">        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;    </span><br><span class="line">        &lt;jdk&gt;1.8&lt;/jdk&gt;    </span><br><span class="line">    &lt;/activation&gt;    </span><br><span class="line">    &lt;properties&gt;    </span><br><span class="line">        &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;    </span><br><span class="line">        &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;    </span><br><span class="line">        &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;    </span><br><span class="line">    &lt;/properties&gt;    </span><br><span class="line">&lt;/profile&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>更新eclipse的maven配置</li>
 </ul>
-<h1 id="springbootcli创建项目"><a href="#springbootcli创建项目" class="headerlink" title="springbootcli创建项目"></a>springbootcli创建项目</h1><ul>
-<li>执行命令：<blockquote>
-<p>spring init -dweb,jpa,security –build gradle -p jar -x</p>
-</blockquote>
+<h2 id="单项目方法"><a href="#单项目方法" class="headerlink" title="单项目方法"></a>单项目方法</h2><ul>
+<li><p>打开pom.xml文件，在<build>节点添加如下配置：</build></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">  &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">        &lt;source&gt;1.7&lt;/source&gt;</span><br><span class="line">        &lt;target&gt;1.7&lt;/target&gt;</span><br><span class="line">      &lt;/configuration&gt;</span><br><span class="line">    &lt;/plugin&gt;</span><br><span class="line">  &lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li>-d：初始依赖</li>
-<li>-build：构建类型</li>
-<li>-p：生成文件类型</li>
-<li>-x：解压到当前目录</li>
-</ul>
-<h1 id="Thymeleaf"><a href="#Thymeleaf" class="headerlink" title="Thymeleaf"></a>Thymeleaf</h1><blockquote>
-<p>Thymeleaf是SpringBoot官方所推荐使用的页面模板语言，它可以完全替代 JSP。</p>
-</blockquote>
-<h1 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h1><blockquote>
-<p>Gradle是一个基于Apache Ant和Apache Maven概念的项目自动化构建开源工具。它使用一种基于Groovy的特定领域语言(DSL)来声明项目设置，目前也增加了基于Kotlin语言的kotlin-based DSL，抛弃了基于XML的各种繁琐配置。</p>
-</blockquote>
-<h1 id="Groovy"><a href="#Groovy" class="headerlink" title="Groovy"></a>Groovy</h1><blockquote>
-<p>Groovy 是 用于Java虚拟机的一种敏捷的动态语言，它是一种成熟的面向对象编程语言，既可以用于面向对象编程，又可以用作纯粹的脚本语言。使用该种语言不必编写过多的代码，同时又具有闭包和动态语言中的其他特性。</p>
-</blockquote>
-<blockquote>
-<p>Groovy是JVM的一个替代语言（替代是指可以用 Groovy 在Java平台上进行 Java 编程），使用方式基本与使用 Java代码的方式相同，该语言特别适合与Spring的动态语言支持一起使用，设计时充分考虑了Java集成，这使 Groovy 与 Java 代码的互操作很容易。（注意：不是指Groovy替代java，而是指Groovy和java很好的结合编程。</p>
-</blockquote>
-<h1 id="Autowired"><a href="#Autowired" class="headerlink" title="Autowired"></a>Autowired</h1><blockquote>
-<p>@Autowired一定要等本类构造完成后，才能从外部引用设置进来。所以@Autowired的注入时间一定会晚于构造函数的执行时间。</p>
-</blockquote>
-<h1 id="pathvariable-requestparam"><a href="#pathvariable-requestparam" class="headerlink" title="@pathvariable @requestparam"></a>@pathvariable @requestparam</h1><ul>
-<li>若获取的入参的 参数 是下面这种形式 就使用 @requestParam 去获取 参数‘2’<blockquote>
-<p>/emps?pageNo=2 </p>
-</blockquote>
-</li>
-<li>若获取的入参的 参数 是下面这种形式 就使用 @PathVariable 去获取参数 ‘7’<blockquote>
-<p>/emp/7</p>
-</blockquote>
+<li><p>maven update project</p>
 </li>
 </ul>
 
@@ -406,6 +372,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/maven/" rel="tag"># maven</a>
+          
+            <a href="/tags/jdk1-5/" rel="tag"># jdk1.5</a>
+          
+        </div>
+      
 
       
       
@@ -415,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/28/linux系统常用指令/" rel="next" title="linux系统常用指令">
-                <i class="fa fa-chevron-left"></i> linux系统常用指令
+              <a href="/2019/09/03/JavaWeb项目使用AntiSamy防御Xss/" rel="next" title="JavaWeb项目使用AntiSamy防御Xss">
+                <i class="fa fa-chevron-left"></i> JavaWeb项目使用AntiSamy防御Xss
               </a>
             
           </div>
@@ -424,10 +398,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/03/JavaWeb项目使用AntiSamy防御Xss/" rel="prev" title="JavaWeb项目使用AntiSamy防御Xss">
-                JavaWeb项目使用AntiSamy防御Xss <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -561,7 +531,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4个核心"><span class="nav-number">1.</span> <span class="nav-text">4个核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#springbootcli安装"><span class="nav-number">2.</span> <span class="nav-text">springbootcli安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#springbootcli创建项目"><span class="nav-number">3.</span> <span class="nav-text">springbootcli创建项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Thymeleaf"><span class="nav-number">4.</span> <span class="nav-text">Thymeleaf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Gradle"><span class="nav-number">5.</span> <span class="nav-text">Gradle</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Groovy"><span class="nav-number">6.</span> <span class="nav-text">Groovy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Autowired"><span class="nav-number">7.</span> <span class="nav-text">Autowired</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pathvariable-requestparam"><span class="nav-number">8.</span> <span class="nav-text">@pathvariable @requestparam</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#maven项目jdk版本1-5修改方法"><span class="nav-number">1.</span> <span class="nav-text">maven项目jdk版本1.5修改方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全局方法-修改settings-xml"><span class="nav-number">1.1.</span> <span class="nav-text">全局方法-修改settings.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单项目方法"><span class="nav-number">1.2.</span> <span class="nav-text">单项目方法</span></a></li></ol></li></ol></div>
             
 
           </div>
