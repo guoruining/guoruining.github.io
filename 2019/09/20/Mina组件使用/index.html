@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mina,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Mina主要接口IoService这个接口在一个线程上负责套接字的建立，拥有自己的Selector，监听是否有连接被建立。这个接口是服务端IoAcceptor、客户端IoConnector 的抽象，提供IO 服务和管理IoSession的功能。 IoAcceptor这个接口是TCPServer 的接口，主要增加了void bind()监听端口、void unbind()解除对套接字的监听等方法。这">
+<meta name="keywords" content="Mina">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mina组件使用">
+<meta property="og:url" content="https://guoruining.github.io/2019/09/20/Mina组件使用/index.html">
+<meta property="og:site_name" content="夜空中最靓的仔">
+<meta property="og:description" content="Mina主要接口IoService这个接口在一个线程上负责套接字的建立，拥有自己的Selector，监听是否有连接被建立。这个接口是服务端IoAcceptor、客户端IoConnector 的抽象，提供IO 服务和管理IoSession的功能。 IoAcceptor这个接口是TCPServer 的接口，主要增加了void bind()监听端口、void unbind()解除对套接字的监听等方法。这">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-20T01:37:00.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mina组件使用">
+<meta name="twitter:description" content="Mina主要接口IoService这个接口在一个线程上负责套接字的建立，拥有自己的Selector，监听是否有连接被建立。这个接口是服务端IoAcceptor、客户端IoConnector 的抽象，提供IO 服务和管理IoSession的功能。 IoAcceptor这个接口是TCPServer 的接口，主要增加了void bind()监听端口、void unbind()解除对套接字的监听等方法。这">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://guoruining.github.io/2019/09/20/Mina组件使用/">
+
+
+
+
+
+  <title>Mina组件使用 | 夜空中最靓的仔</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">夜空中最靓的仔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://guoruining.github.io/2019/09/20/Mina组件使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="guozi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/myhead.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="夜空中最靓的仔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mina组件使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-20T09:25:23+08:00">
+                2019-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java后台/" itemprop="url" rel="index">
+                    <span itemprop="name">Java后台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Mina主要接口"><a href="#Mina主要接口" class="headerlink" title="Mina主要接口"></a>Mina主要接口</h1><h2 id="IoService"><a href="#IoService" class="headerlink" title="IoService"></a>IoService</h2><p>这个接口在一个线程上负责套接字的建立，拥有自己的Selector，监听是否有连接被建立。<br>这个接口是服务端IoAcceptor、客户端IoConnector 的抽象，提供IO 服务和管理IoSession的功能。</p>
+<h2 id="IoAcceptor"><a href="#IoAcceptor" class="headerlink" title="IoAcceptor"></a>IoAcceptor</h2><p>这个接口是TCPServer 的接口，主要增加了void bind()监听端口、void unbind()解除对套接字的监听等方法。这里与传统的JAVA中的ServerSocket不同的是IoAcceptor可以多次调用bind()方法（或者在一个方法中传入多个SocketAddress 参数）同时监听多个端口。</p>
+<h2 id="IoConnector"><a href="#IoConnector" class="headerlink" title="IoConnector"></a>IoConnector</h2><p>这个接口是TCPClient的接口， 主要增加了ConnectFuture connect()方法，用于与Server 端建立连接，第二个参数如果不传递则使用本地的一个随机端口访问Server 端。这个方法是异步执行的，同样的，也可以同时连接多个服务端。</p>
+<h2 id="IoSession"><a href="#IoSession" class="headerlink" title="IoSession"></a>IoSession</h2><p>这个接口用于表示Server端与Client 端的连接，IoAcceptor.accept()的时候返回实例。<br>无论在客户端还是服务端，IoSession 都用于表示底层的一个TCP 连接，那么你会发现无论是Server 端还是Client 端的IoSession 调用close()方法之后，TCP连接虽然显示关闭， 但主线程仍然在运行，也就是JVM并未退出，这是因为IoSession的close()仅仅是关闭了TCP的连接通道，并没有关闭Server端、Client端的程序。你需要调用IoService的dispose()方法停止Server 端、Client 端。</p>
+<h2 id="IoSessionConfig"><a href="#IoSessionConfig" class="headerlink" title="IoSessionConfig"></a>IoSessionConfig</h2><p>这个方法用于指定此次会话的配置.</p>
+<h2 id="IoProcessor"><a href="#IoProcessor" class="headerlink" title="IoProcessor"></a>IoProcessor</h2><p>这个接口在另一个线程上，负责检查是否有数据在通道上读写，也就是说它也拥有自己的Selector，这是与我们使用JAVANIO编码时的一个不同之处，通常在JAVANIO编码中我们都是使用一个Selector，也就是不区分IoService与IoProcessor两个功能接口。另外，IoProcessor负责调用注册在IoService上的过滤器，并在过滤器链之后调用IoHandler。</p>
+<h2 id="IoFilter"><a href="#IoFilter" class="headerlink" title="IoFilter"></a>IoFilter</h2><p>这个接口定义一组拦截器，这些拦截器可以包括日志输出、黑名单过滤、数据的编码（write方向）与解码（read方向）等功能，其中数据的encode与decode是最为重要的、也是你在使用Mina 时最主要关注的地方。<br>在IoProcessor 与IoHandler 之间可以有很多的过滤器。<br>协议编解码器是在使用Mina 的时候你最需要关注的对象，因为在网络传输的数据都是二进制数据（byte），而你在程序中面向的是JAVA 对象，这就需要你实现在发送数据时将JAVA 对象编码二进制数据，而接收数据时将二进制数据解码为JAVA 对象（这个可不是JAVA 对象的序列化、反序列化那么简单的事情）。Mina 中的协议编解码器通过过滤器ProtocolCodecFilter 构造。</p>
+<h2 id="IoHandler"><a href="#IoHandler" class="headerlink" title="IoHandler"></a>IoHandler</h2><p>这个接口负责编写业务逻辑，也就是接收、发送数据的地方。<br>这个接口是你编写业务逻辑的地方，读取数据、发送数据基本都在这个接口总完成，这个实例是绑定到IoService 上的，有且只有一个实例（没有给一个IoService 注入一个IoHandler 实例会抛出异常）。</p>
+<h3 id="sessionCreated"><a href="#sessionCreated" class="headerlink" title="sessionCreated"></a>sessionCreated</h3><p>这个方法当一个Session 对象被创建的时候被调用。对于TCP 连接来说，连接被接受的时候调用，但要注意此时TCP 连接并未建立，此方法仅代表字面含义，也就是连接的对象IoSession 被创建完毕的时候，回调这个方法。对于UDP 来说，当有数据包收到的时候回调这个方法，因为UDP 是无连接的。</p>
+<h3 id="sessionOpened"><a href="#sessionOpened" class="headerlink" title="sessionOpened"></a>sessionOpened</h3><p>这个方法在连接被打开时调用，它总是在sessionCreated()方法之后被调用。对于TCP 来说，它是在连接被建立之后调用，你可以在这里执行一些认证操作、发送数据等。对于UDP 来说，这个方法与sessionCreated()没什么区别，但是紧跟其后执行。如果你每隔一段时间，发送一些数据，那么sessionCreated()方法只会在第一次调用，但是sessionOpened()方法每次都会调用。</p>
+<h3 id="sessionClosed"><a href="#sessionClosed" class="headerlink" title="sessionClosed"></a>sessionClosed</h3><p>对于TCP 来说，连接被关闭时，调用这个方法。对于UDP 来说，IoSession 的close()方法被调用时才会毁掉这个方法。</p>
+<h3 id="sessionIdle"><a href="#sessionIdle" class="headerlink" title="sessionIdle"></a>sessionIdle</h3><p>这个方法在IoSession 的通道进入空闲状态时调用，对于UDP 协议来说，这个方法始终不会被调用。</p>
+<h3 id="exceptionCaught"><a href="#exceptionCaught" class="headerlink" title="exceptionCaught"></a>exceptionCaught</h3><p>这个方法在你的程序、Mina 自身出现异常时回调，一般这里是关闭IoSession。</p>
+<h3 id="messageReceived"><a href="#messageReceived" class="headerlink" title="messageReceived"></a>messageReceived</h3><p>接收到消息时调用的方法，也就是用于接收消息的方法，一般情况下，message 是一个IoBuffer 类，如果你使用了协议编解码器，那么可以强制转换为你需要的类型。通常我们都是会使用协议编解码器的。</p>
+<h3 id="messageSent"><a href="#messageSent" class="headerlink" title="messageSent"></a>messageSent</h3><p>当发送消息成功时调用这个方法，注意这里的措辞，发送成功之后，也就是说发送消息是不能用这个方法的。<br>发送消息应该在sessionOpened()、messageReceived()方法中调用IoSession.write()方法完成。因为在sessionOpened()方法中，TCP连接已经真正打开，同样的在messageReceived()方法TCP连接也是打开状态，只不过两者的时机不同。sessionOpened()方法是在TCP连接建立之后，接收到数据之前发送；messageReceived()方法是在接收到数据之后发送，你可以完成依据收到的内容是什么样子，决定发送什么样的数据。因为这个接口中的方法太多，因此通常使用适配器模式IoHandlerAdapter，覆盖你所感兴趣的方法即可。</p>
+<h2 id="IoBuffer"><a href="#IoBuffer" class="headerlink" title="IoBuffer"></a>IoBuffer</h2><p>这个接口是对JAVA NIO 的ByteBuffer 的封装，这主要是因为ByteBuffer 只提供了对基本数据类型的读写操作，没有提供对字符串等对象类型的读写方法，使用起来更为方便，另外，ByteBuffer 是定长的，如果想要可变，将很麻烦。IoBuffer 的可变长度的实现类似于StringBuffer。IoBuffer 与ByteBuffer 一样，都是非线程安全的。</p>
+<p>public static IoBuffer allocate(int capacity, boolean direct)<br>direct：如果为true，则得到direct buffer，如果为false，则得到heap buffer<br>direct Buffer不是分配在堆上的，它不被GC直接管理（但Direct Buffer的JAVA对象是归GC管理的，只要GC回收了它的JAVA对象，操作系统才会释放Direct Buffer所申请的空间），它似乎给人感觉是“内核缓冲区（buffer in kernel）”。Heap Buffer则是分配在堆上的，或者我们可以简单理解为Heap Buffer就是byte[]数组的一种封装形式。当我们把一个Heap Buffer写入Channel的时候，实际上底层实现会先构建一个临时的Direct Buffer，然后把Heap Buffer的内容复制到这个临时的Direct Buffer上，再把这个Direct Buffer写出去。因此把一个Direct Buffer写入一个Channel的速度要比把一个Heap Buffer写入一个Channel的速度要快。但是Direct Buffer创建和销毁的代价很高，所以要用在尽可能重用的地方。</p>
+<h2 id="IoFuture"><a href="#IoFuture" class="headerlink" title="IoFuture"></a>IoFuture</h2><p>在Mina 的很多操作中，你会看到返回值是XXXFuture，实际上他们都是IoFuture 的子类，看到这样的返回值，这个方法就说明是异步执行的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mina/" rel="tag"># Mina</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/09/maven项目Jdk版本1-5解决方案/" rel="next" title="maven项目Jdk版本1.5解决方案">
+                <i class="fa fa-chevron-left"></i> maven项目Jdk版本1.5解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/myhead.jpg" alt="guozi">
+            
+              <p class="site-author-name" itemprop="name">guozi</p>
+              <p class="site-description motion-element" itemprop="description">一代人终将老去，但总有人正年轻！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mina主要接口"><span class="nav-number">1.</span> <span class="nav-text">Mina主要接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IoService"><span class="nav-number">1.1.</span> <span class="nav-text">IoService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoAcceptor"><span class="nav-number">1.2.</span> <span class="nav-text">IoAcceptor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoConnector"><span class="nav-number">1.3.</span> <span class="nav-text">IoConnector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoSession"><span class="nav-number">1.4.</span> <span class="nav-text">IoSession</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoSessionConfig"><span class="nav-number">1.5.</span> <span class="nav-text">IoSessionConfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoProcessor"><span class="nav-number">1.6.</span> <span class="nav-text">IoProcessor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoFilter"><span class="nav-number">1.7.</span> <span class="nav-text">IoFilter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoHandler"><span class="nav-number">1.8.</span> <span class="nav-text">IoHandler</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sessionCreated"><span class="nav-number">1.8.1.</span> <span class="nav-text">sessionCreated</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sessionOpened"><span class="nav-number">1.8.2.</span> <span class="nav-text">sessionOpened</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sessionClosed"><span class="nav-number">1.8.3.</span> <span class="nav-text">sessionClosed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sessionIdle"><span class="nav-number">1.8.4.</span> <span class="nav-text">sessionIdle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exceptionCaught"><span class="nav-number">1.8.5.</span> <span class="nav-text">exceptionCaught</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#messageReceived"><span class="nav-number">1.8.6.</span> <span class="nav-text">messageReceived</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#messageSent"><span class="nav-number">1.8.7.</span> <span class="nav-text">messageSent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoBuffer"><span class="nav-number">1.9.</span> <span class="nav-text">IoBuffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoFuture"><span class="nav-number">1.10.</span> <span class="nav-text">IoFuture</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guozi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
