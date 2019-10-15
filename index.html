@@ -252,6 +252,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://guoruining.github.io/2019/10/15/maven仓库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="guozi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/myhead.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="夜空中最靓的仔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/15/maven仓库/" itemprop="url">maven仓库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-15T15:39:06+08:00">
+                2019-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Maven仓库"><a href="#Maven仓库" class="headerlink" title="Maven仓库"></a>Maven仓库</h1><p>repository里存放的都是各种jar包和maven插件。当向仓库请求插件或依赖的时候，会先检查local repository，如果local repository有则直接返回，否则会向remote repository请求，并缓存到local repository。也可以把做的东西放到本地仓库，仅供本地使用；或上传到远程仓库，供大家使用。</p>
+<h2 id="Pom中的远程仓库"><a href="#Pom中的远程仓库" class="headerlink" title="Pom中的远程仓库"></a>Pom中的远程仓库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;repositories&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">      &lt;id&gt;maven-net-cn&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;Maven China Mirror&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;http://maven.net.cn/content/groups/public/&lt;/url&gt;</span><br><span class="line">      &lt;releases&gt;</span><br><span class="line">        &lt;enabled&gt;true&lt;/enabled&gt;</span><br><span class="line">      &lt;/releases&gt;</span><br><span class="line">      &lt;snapshots&gt;</span><br><span class="line">        &lt;enabled&gt;false&lt;/enabled&gt;</span><br><span class="line">      &lt;/snapshots&gt;</span><br><span class="line">    &lt;/repository&gt;</span><br><span class="line">  &lt;/repositories&gt;</span><br><span class="line">  &lt;pluginRepositories&gt;</span><br><span class="line">    &lt;pluginRepository&gt;</span><br><span class="line">      &lt;id&gt;maven-net-cn&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;Maven China Mirror&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;http://maven.net.cn/content/groups/public/&lt;/url&gt;</span><br><span class="line">      &lt;releases&gt;</span><br><span class="line">        &lt;enabled&gt;true&lt;/enabled&gt;</span><br><span class="line">      &lt;/releases&gt;</span><br><span class="line">      &lt;snapshots&gt;</span><br><span class="line">        &lt;enabled&gt;false&lt;/enabled&gt;</span><br><span class="line">      &lt;/snapshots&gt;    </span><br><span class="line">    &lt;/pluginRepository&gt;</span><br><span class="line">  &lt;/pluginRepositories&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;releases&gt;</span><br><span class="line">	&lt;enabled&gt;true&lt;/enabled&gt;</span><br><span class="line">&lt;/releases&gt;</span><br></pre></td></tr></table></figure>
+
+<p>告诉Maven可以从这个仓库下载releases版本的构件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;snapshots&gt;</span><br><span class="line">	&lt;enabled&gt;false&lt;/enabled&gt;</span><br><span class="line">&lt;/snapshots&gt;</span><br></pre></td></tr></table></figure>
+
+<p>告诉Maven不要从这个仓库下载snapshot版本的构件。</p>
+<p>禁止从公共仓库下载snapshot构件是推荐的做法，因为这些构件不稳定，且不受你控制，你应该避免使用。当然，如果你想使用局域网内组织内部的仓库，你可以激活snapshot的支持。</p>
+<p>pluginRepositories是配置Maven从什么地方下载插件构件（Maven的所有实际行为都由其插件完成）。该元素的内部配置和repository完全一样。</p>
+<h2 id="setting里的远程仓库"><a href="#setting里的远程仓库" class="headerlink" title="setting里的远程仓库"></a>setting里的远程仓库</h2><h3 id="profile"><a href="#profile" class="headerlink" title="profile"></a>profile</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">    &lt;profile&gt;</span><br><span class="line">      &lt;id&gt;dev&lt;/id&gt;</span><br><span class="line">      &lt;!-- repositories and pluginRepositories here--&gt;</span><br><span class="line">    &lt;/profile&gt;</span><br><span class="line">&lt;/profiles&gt;</span><br><span class="line">&lt;activeProfiles&gt;</span><br><span class="line">	&lt;activeProfile&gt;dev&lt;/activeProfile&gt;</span><br><span class="line">&lt;/activeProfiles&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们定义一个id为dev的profile，将所有repositories以及pluginRepositories元素放到这个profile中，然后，使用activeProfiles元素自动激活该profile。这样，你就不用再为每个POM重复配置仓库。</p>
+<h3 id="mirror"><a href="#mirror" class="headerlink" title="mirror"></a>mirror</h3><p><img src="/images/mirror.png" alt></p>
+<p>mirror相当于一个拦截器，它会拦截maven对remote repository的相关请求，把请求里的remote repository地址，重定向到mirror里配置的地址。</p>
+<p>如果仓库B可以提供仓库A存储的所有内容，那么就可以认为B是A的一个镜像。换句话说，任何一个可以从仓库A获得的构件，都能够从它的镜像中获取。</p>
+<p>其实，mirror表示的是两个Repository之间的关系，在maven配置文件（setting.xml)里配置了mirrors即定义了两个Repository之间的镜像关系。</p>
+<p>mirrorOf标签里面放置的是要被镜像的RepositoryID。为了满足一些复杂的需求，Maven还支持更高级的镜像配置： </p>
+<ul>
+<li><p>&lt; mirrorOf&gt;* &lt; /mirrorOf&gt; </p>
+<p>  匹配所有远程仓库。 </p>
+</li>
+<li><p>&lt; mirrorOf&gt;repo1,repo2 &lt; /mirrorOf&gt; </p>
+<p>  匹配仓库repo1和repo2，使用逗号分隔多个远程仓库。 </p>
+</li>
+<li><p>&lt; mirrorOf&gt;*,!repo1 &lt; /mirrorOf&gt; </p>
+<p>  匹配所有远程仓库，repo1除外，使用感叹号将仓库从匹配中排除。 </p>
+</li>
+</ul>
+<p>配置两个Repository之间的镜像关系，一般是出于访问速度和下载速度考虑。</p>
+<p>例如， 有一个项目，需要在公司和住所都编码，并在项目pom.xml配置了A Maven库。在公司，是电信网络，访问A库很快，所以maven管理依赖和插件都从A库下载；在住所，是网通网络，访问A库很慢，但是访问B库很快。这时，在住所的setting.xml里，只要配置一下mirrors，让B库成为A库的mirror，即可不用更改项目pom.xml里对于A库的相关配置。</p>
+<p>如果该镜像仓库需要认证，则配置setting.xml中的server即可。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://guoruining.github.io/2019/10/15/System-getProperty获得tomcat自定义变量/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1307,7 +1481,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1318,7 +1492,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
